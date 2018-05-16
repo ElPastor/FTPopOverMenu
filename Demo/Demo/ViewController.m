@@ -60,7 +60,7 @@
     [FTPopOverMenu showForSender:sender
                    withMenuArray:@[@"MenuOne", @"MenuTwo", @"MenuThree", @"MenuFour",]
                       imageArray:@[icomImageURLString, icomImageURL, [UIImage imageNamed:@"Pokemon_Go_03"], @"Pokemon_Go_04"]
-                       doneBlock:^(NSInteger selectedIndex) {
+                       doneBlock:^(NSInteger selectedIndex, id userData) {
                            
                            NSLog(@"done block. do something. selectedIndex : %ld", (long)selectedIndex);
                            

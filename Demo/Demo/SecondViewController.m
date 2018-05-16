@@ -37,7 +37,7 @@
 {
     if (!_menuObjectArray) {
         _menuObjectArray = @[[[FTPopOverMenuModel alloc] initWithTitle:@"MenuOne" image:@"Pokemon_Go_01" selected:NO],
-                             [[FTPopOverMenuModel alloc] initWithTitle:@"MenuTwo" image:@"Pokemon_Go_02" selected:NO],
+                             [[FTPopOverMenuModel alloc] initWithTitle:@"MenuTwo" image:@"Pokemon_Go_02" selected:NO userData: @2],
                              [[FTPopOverMenuModel alloc] initWithTitle:@"MenuThree" image:@"Pokemon_Go_03" selected:NO],
                              [[FTPopOverMenuModel alloc] initWithTitle:@"MenuFour" image:@"Pokemon_Go_04" selected:NO]];
     }
@@ -75,8 +75,7 @@
     
     [FTPopOverMenu showFromEvent:event
                    withMenuArray:self.menuObjectArray
-                       doneBlock:^(NSInteger selectedIndex) {
-                           
+                       doneBlock:^(NSInteger selectedIndex, id userData) {
                            
                        } dismissBlock:^{
                            
@@ -136,7 +135,7 @@
     [FTPopOverMenu showForSender:sender
                    withMenuArray:menuNameArray
                       imageArray:menuImageNameArray
-                       doneBlock:^(NSInteger selectedIndex) {
+                       doneBlock:^(NSInteger selectedIndex, id userData) {
                            
                            [sender setTitle:menuNameArray[selectedIndex] forState:UIControlStateNormal];
                            

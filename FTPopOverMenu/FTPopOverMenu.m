@@ -54,13 +54,22 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
 
 @implementation FTPopOverMenuModel
 
-- (instancetype)initWithTitle:(NSString *)title image:(id)image selected:(BOOL)selected
+- (instancetype)initWithTitle:(NSString *)title image:(id)image selected:(BOOL)selected userData: (id) userData
 {
     self = [super init];
     if (self) {
         self.title = title;
         self.image = image;
         self.selected = selected;
+        self.userData = userData;
+    }
+    return self;
+}
+
+- (instancetype)initWithTitle:(NSString *)title image:(id)image selected:(BOOL)selected
+{
+    self = [self initWithTitle:title image:image selected:selected userData: nil];
+    if (self) {
     }
     return self;
 }
@@ -505,15 +514,18 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
     id object = _menuStringArray[indexPath.row];
+    
+    id userData = nil;
     if ([object isKindOfClass:[FTPopOverMenuModel class]]) {
         [_menuStringArray enumerateObjectsUsingBlock:^(FTPopOverMenuModel * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
             obj.selected = idx == indexPath.row;
         }];
         [self.menuTableView reloadData];
+        userData = [(FTPopOverMenuModel*)object userData];
     }
     
     if (self.doneBlock) {
-        self.doneBlock(indexPath.row);
+        self.doneBlock(indexPath.row, userData);
     }
 }
 
@@ -776,7 +788,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
                  imageNameArray:self.menuImageArray
                shouldAutoScroll:shouldAutoScroll
                  arrowDirection:arrowDirection
-                      doneBlock:^(NSInteger selectedIndex) {
+                      doneBlock:^(NSInteger selectedIndex, id userData) {
                           [self doneActionWithSelectedIndex:selectedIndex];
                       }];
     
@@ -865,7 +877,11 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
                                  }
                              }else{
                                  if (self.doneBlock) {
-                                     self.doneBlock(selectedIndex);
+                                     id object = self.menuArray[selectedIndex];
+                                     id userData = nil;
+                                     if ([object isKindOfClass:[FTPopOverMenuModel class]])
+                                         userData = [(FTPopOverMenuModel*)object userData];
+                                     self.doneBlock(selectedIndex, userData);
                                  }
                              }
                          }

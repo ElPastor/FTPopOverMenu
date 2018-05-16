@@ -13,7 +13,7 @@
  *
  *  @param index SlectedIndex
  */
-typedef void (^FTPopOverMenuDoneBlock)(NSInteger selectedIndex);
+typedef void (^FTPopOverMenuDoneBlock)(NSInteger selectedIndex, id userData);
 /**
  *  FTPopOverMenuDismissBlock
  */
@@ -27,8 +27,10 @@ typedef void (^FTPopOverMenuDismissBlock)(void);
 @property (nonatomic, strong) NSString *title;
 @property (nonatomic, strong) id image;
 @property (nonatomic, assign) BOOL selected;
+@property (nonatomic, strong) id userData;
 
 - (instancetype)initWithTitle:(NSString *)title image:(id)image selected:(BOOL)selected;
+- (instancetype)initWithTitle:(NSString *)title image:(id)image selected:(BOOL)selected userData: (id) userData;
 
 @end
 

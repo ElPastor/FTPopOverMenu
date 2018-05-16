@@ -43,6 +43,7 @@
     configuration.borderWidth = 0.5;
     configuration.allowDrawArrow = NO;
     configuration.separatorColor = [UIColor greenColor];
+//    configuration.showShadow = YES;
 //    configuration.textAlignment = NSTextAlignmentCenter;
 //    configuration.ignoreImageOriginalColor = YES;// set 'ignoreImageOriginalColor' to YES, images color will be same as textColor
 

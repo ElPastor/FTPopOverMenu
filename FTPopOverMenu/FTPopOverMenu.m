@@ -104,6 +104,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
         self.selectedTextColor = FTDefaultSelectedTextColor;
         self.selectedCellBackgroundColor = FTDefaultCellBackgroundColor;
         self.separatorColor = FTDefaultSeparatorColor;
+        self.showShadow = NO;
     }
     return self;
 }
@@ -367,6 +368,7 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
     UIBezierPath *path = [UIBezierPath bezierPath];
     BOOL allowRoundedArrow = [FTPopOverMenuConfiguration defaultConfiguration].allowRoundedArrow;
     BOOL allowDrawArrow = [FTPopOverMenuConfiguration defaultConfiguration].allowDrawArrow;
+    BOOL showShadow = [FTPopOverMenuConfiguration defaultConfiguration].showShadow;
     CGFloat offset = 2.f*FTDefaultMenuArrowRoundRadius*sinf(M_PI_4/2.f);
     CGFloat roundcenterHeight = offset + FTDefaultMenuArrowRoundRadius*sqrtf(2.f);
     CGPoint roundcenterPoint = CGPointMake(anglePoint.x, roundcenterHeight);
@@ -437,6 +439,13 @@ typedef NS_ENUM(NSUInteger, FTPopOverMenuArrowDirection) {
     _backgroundLayer.fillColor = [FTPopOverMenuConfiguration defaultConfiguration].tintColor.CGColor;
     _backgroundLayer.strokeColor = [FTPopOverMenuConfiguration defaultConfiguration].borderColor.CGColor;
     [self.layer insertSublayer:_backgroundLayer atIndex:0];
+    
+    if (showShadow) {
+        self.layer.shadowColor = [UIColor blackColor].CGColor;
+        self.layer.shadowRadius = 8;
+        self.layer.shadowOffset = CGSizeMake(0, 0);
+        self.layer.shadowOpacity = 0.1;
+    }
 }
 
 

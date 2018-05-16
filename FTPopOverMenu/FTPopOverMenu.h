@@ -49,9 +49,11 @@ typedef void (^FTPopOverMenuDismissBlock)(void);
 @property (nonatomic, assign) NSTextAlignment textAlignment;
 @property (nonatomic, assign) BOOL ignoreImageOriginalColor;// Default is 'NO', if sets to 'YES', images color will be same as textColor.
 @property (nonatomic, assign) BOOL allowRoundedArrow;// Default is 'NO', if sets to 'YES', the arrow will be drawn with round corner.
+@property (nonatomic, assign) BOOL allowDrawArrow;// Default is 'YES', if sets to 'NO', the arrow will not be drawn.
 @property (nonatomic, assign) NSTimeInterval animationDuration;
 @property (nonatomic, strong) UIColor *selectedTextColor;
 @property (nonatomic, strong) UIColor *selectedCellBackgroundColor;
+@property (nonatomic, strong) UIColor *separatorColor;
 /**
  *  defaultConfiguration
  *

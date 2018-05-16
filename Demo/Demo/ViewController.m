@@ -30,7 +30,7 @@
     
     // uncomment the following line to use custom settings.
     
-//#define USE_CUSTOM_SETTINGS
+#define USE_CUSTOM_SETTINGS
 
 #ifdef USE_CUSTOM_SETTINGS
     FTPopOverMenuConfiguration *configuration = [FTPopOverMenuConfiguration defaultConfiguration];
@@ -41,6 +41,8 @@
     configuration.tintColor = [UIColor whiteColor];
     configuration.borderColor = [UIColor blackColor];
     configuration.borderWidth = 0.5;
+    configuration.allowDrawArrow = NO;
+    configuration.separatorColor = [UIColor greenColor];
 //    configuration.textAlignment = NSTextAlignmentCenter;
 //    configuration.ignoreImageOriginalColor = YES;// set 'ignoreImageOriginalColor' to YES, images color will be same as textColor
 
